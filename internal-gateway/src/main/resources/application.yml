@@ -1,0 +1,17 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: internal-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: inventory-service
+          uri: http://localhost:8071
+          predicates:
+            - Path=/inventory/**
+        - id: order-service
+          uri: http://localhost:8072
+          predicates:
+            - Path=/order/**

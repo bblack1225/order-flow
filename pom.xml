@@ -17,6 +17,7 @@
     <modules>
         <module>inventory-service</module>
         <module>order-service</module>
+        <module>internal-gateway</module>
     </modules>
     <properties>
         <java.version>21</java.version>
