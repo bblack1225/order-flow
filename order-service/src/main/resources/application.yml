@@ -1,5 +1,18 @@
+server:
+  port: 8072
+
 spring:
   application:
     name: order-service
-server:
-  port: 8072
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3307/orders
+    username: root
+    password: "00000000"
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: validate
+logging:
+  level:
+    org.hibernate: INFO
