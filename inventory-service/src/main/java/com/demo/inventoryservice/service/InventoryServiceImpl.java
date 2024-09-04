@@ -4,7 +4,7 @@ import com.demo.inventoryservice.entity.Inventory;
 import com.demo.inventoryservice.entity.InventoryHistory;
 import com.demo.inventoryservice.message.CreateOrderMessage;
 import com.demo.inventoryservice.message.OrderStatusMessage;
-import com.demo.inventoryservice.mq.OrderProducer;
+import com.demo.inventoryservice.mq.InventoryProducer;
 import com.demo.inventoryservice.repository.InventoryHistoryRepository;
 import com.demo.inventoryservice.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
     private final InventoryHistoryRepository inventoryHistoryRepository;
     private final MongoTemplate mongoTemplate;
-    private final OrderProducer orderProducer;
+    private final InventoryProducer inventoryProducer;
     private static final int SUCCESS_STATUS = 1;
     private static final int FAILED_STATUS = 0;
 
@@ -86,6 +86,6 @@ public class InventoryServiceImpl implements InventoryService {
         orderStatusMessage.setDescription(description);
         orderStatusMessage.setStatus(status);
         orderStatusMessage.setActualQty(actualQty);
-        orderProducer.sendOrderStatusMessage(orderStatusMessage);
+        inventoryProducer.sendOrderStatusMessage(orderStatusMessage);
     }
 }
