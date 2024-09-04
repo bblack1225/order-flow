@@ -1,5 +1,7 @@
 package com.demo.orderservice.service;
 
+import com.demo.commonutil.message.CreateOrderMessage;
+import com.demo.commonutil.message.OrderStatusMessage;
 import com.demo.orderservice.dto.*;
 import com.demo.orderservice.entity.OrderInformation;
 import com.demo.orderservice.entity.OrderRepository;
@@ -34,7 +36,7 @@ public class OrderService {
     public void sendOrder(String exchange, String routingKey, OrderDto orderDto) {
         OrderInformation orderInformation = OrderDto.convertDto(orderDto);
         OrderInformation entity= saveOrder(orderInformation);
-        CreateOrderMessage response = CreateOrderMessage.convertDto(entity);
+        CreateOrderMessage response = convertToCreateOrderMsg(entity);
 
         rabbitTemplate.convertAndSend(exchange, routingKey, response);
         System.out.println("Message has been sent: " + response);
@@ -53,5 +55,13 @@ public class OrderService {
         System.out.println("2:  " + entity);
 
         saveOrder(entity);
+    }
+
+    private CreateOrderMessage convertToCreateOrderMsg(OrderInformation request){
+        CreateOrderMessage response = new CreateOrderMessage();
+        response.setOrderId(request.getId());
+        response.setProductId(request.getProductId());
+        response.setOrderQty(request.getOrderQty());
+        return response;
     }
 }

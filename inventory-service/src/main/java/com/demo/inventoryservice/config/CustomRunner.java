@@ -1,6 +1,5 @@
 package com.demo.inventoryservice.config;
 
-import com.demo.inventoryservice.message.CreateOrderMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;

@@ -1,9 +1,9 @@
 package com.demo.inventoryservice.service;
 
+import com.demo.commonutil.message.CreateOrderMessage;
+import com.demo.commonutil.message.OrderStatusMessage;
 import com.demo.inventoryservice.entity.Inventory;
 import com.demo.inventoryservice.entity.InventoryHistory;
-import com.demo.inventoryservice.message.CreateOrderMessage;
-import com.demo.inventoryservice.message.OrderStatusMessage;
 import com.demo.inventoryservice.mq.InventoryProducer;
 import com.demo.inventoryservice.repository.InventoryHistoryRepository;
 import com.demo.inventoryservice.repository.InventoryRepository;

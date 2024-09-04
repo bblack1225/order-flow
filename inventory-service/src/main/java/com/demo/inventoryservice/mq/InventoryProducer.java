@@ -1,6 +1,6 @@
 package com.demo.inventoryservice.mq;
 
-import com.demo.inventoryservice.message.OrderStatusMessage;
+import com.demo.commonutil.message.OrderStatusMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

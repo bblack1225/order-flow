@@ -1,7 +1,6 @@
-package com.demo.orderservice.dto;
+package com.demo.commonutil.message;
 
 import lombok.Data;
-
 
 @Data
 public class OrderStatusMessage {

@@ -1,4 +1,4 @@
-package com.demo.inventoryservice.message;
+package com.demo.commonutil.message;
 
 import lombok.Data;
 

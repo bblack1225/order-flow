@@ -1,6 +1,6 @@
 package com.demo.inventoryservice.mq;
 
-import com.demo.inventoryservice.message.CreateOrderMessage;
+import com.demo.commonutil.message.CreateOrderMessage;
 import com.demo.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
