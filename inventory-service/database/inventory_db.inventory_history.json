@@ -1,0 +1,59 @@
+[{
+  "_id": {
+    "$oid": "66d6baf83b8b2b437c89f40e"
+  },
+  "productId": "66d675ab3b8b2b437c89f369",
+  "orderId": 1,
+  "quantity": 1,
+  "action": "CREATE_ORDER",
+  "createdAt": "2024-09-02T12:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "66d7f6f38a941921e1d0cf68"
+  },
+  "productId": "66d675ab3b8b2b437c89f369",
+  "quantity": 2,
+  "orderId": 1,
+  "action": "CREATE_ORDER",
+  "_class": "com.demo.inventoryservice.entity.InventoryHistory"
+},
+{
+  "_id": {
+    "$oid": "66d7f721503ee4536c9edf85"
+  },
+  "productId": "66d675ab3b8b2b437c89f369",
+  "quantity": 2,
+  "orderId": 1,
+  "action": "CREATE_ORDER",
+  "createdAt": {
+    "$date": "2024-09-04T05:58:57.453Z"
+  },
+  "_class": "com.demo.inventoryservice.entity.InventoryHistory"
+},
+{
+  "_id": {
+    "$oid": "66d7f76038d9c95921dfd2db"
+  },
+  "productId": "66d675ab3b8b2b437c89f369",
+  "quantity": 2,
+  "orderId": 1,
+  "action": "CREATE_ORDER",
+  "createdAt": {
+    "$date": "2024-09-04T06:00:00.060Z"
+  },
+  "_class": "com.demo.inventoryservice.entity.InventoryHistory"
+},
+{
+  "_id": {
+    "$oid": "66d7f95c8813962676163265"
+  },
+  "productId": "66d675ab3b8b2b437c89f369",
+  "quantity": 2,
+  "orderId": 1,
+  "action": "CREATE_ORDER",
+  "createdAt": {
+    "$date": "2024-09-04T06:08:28.081Z"
+  },
+  "_class": "com.demo.inventoryservice.entity.InventoryHistory"
+}]

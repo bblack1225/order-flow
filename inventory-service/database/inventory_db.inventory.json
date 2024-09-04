@@ -1,0 +1,44 @@
+[{
+  "_id": {
+    "$oid": "66d6797e3b8b2b437c89f37a"
+  },
+  "quantity": 1,
+  "status": "available",
+  "lastUpdated": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "productId": "66d675ab3b8b2b437c89f369"
+},
+{
+  "_id": {
+    "$oid": "66d679c33b8b2b437c89f37f"
+  },
+  "quantity": 11,
+  "status": "available",
+  "lastUpdated": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "productId": "66d6766e3b8b2b437c89f36d"
+},
+{
+  "_id": {
+    "$oid": "66d679f63b8b2b437c89f382"
+  },
+  "quantity": 150,
+  "status": "available",
+  "lastUpdated": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "productId": "66d676893b8b2b437c89f36e"
+},
+{
+  "_id": {
+    "$oid": "66d67a103b8b2b437c89f383"
+  },
+  "quantity": 12,
+  "status": "available",
+  "lastUpdated": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "productId": "66d676943b8b2b437c89f36f"
+}]

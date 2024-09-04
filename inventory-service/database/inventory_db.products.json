@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "66d675ab3b8b2b437c89f369"
+  },
+  "name": "iPhone11",
+  "description": "iPhone11",
+  "category": "Cellphone",
+  "price": 30000,
+  "createAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d6766e3b8b2b437c89f36d"
+  },
+  "name": "iPhone12",
+  "description": "iPhone12",
+  "category": "Cellphone",
+  "price": 31000,
+  "createAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d676893b8b2b437c89f36e"
+  },
+  "name": "iPhone13",
+  "description": "iPhone13",
+  "category": "Cellphone",
+  "price": 33000,
+  "createAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d676943b8b2b437c89f36f"
+  },
+  "name": "iPhone14",
+  "description": "iPhone14",
+  "category": "Cellphone",
+  "price": 35000,
+  "createAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-02T12:00:00.000Z"
+  }
+}]
