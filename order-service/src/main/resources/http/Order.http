@@ -1,0 +1,21 @@
+### 執行下訂單
+POST http://127.0.0.1:8072/orders
+Content-Type: application/json
+
+{
+  "productId":"66d675ab3b8b2b437c89f369",
+  "name": "Sample Order",
+  "orderQty": 3,
+  "price": 150,
+  "payerName": "elliot",
+  "phone": "0988888888",
+  "email": "test@gmail.com",
+  "address": "台北市信義區陶豬隱園",
+  "paymentName": "永豐visa",
+  "paymentStatus": 1,
+  "status": 1
+}
+
+
+### 檢查訂單狀態
+GET http://127.0.0.1:8072/orders/check/80

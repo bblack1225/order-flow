@@ -11,6 +11,7 @@ spring:
     password: "00000000"
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
     hibernate:
       ddl-auto: validate
 logging:
