@@ -9,7 +9,7 @@ import java.math.BigInteger;
 @Data
 public class OrderDto {
     int id;
-    int productId;
+    String productId;
     String name;
     int orderQty ;
     int actualQty  ;

@@ -21,8 +21,8 @@ public class OrderConsumer {
         inventoryService.updateInventory(message);
     }
 
-//    @RabbitListener(queues = "order.status.queue")
-//    public void getOrderStatusMessage(OrderStatusMessage message){
-//        log.info("Order status message received: {}", message);
-//    }
+    @RabbitListener(queues = "order.status.queue")
+    public void getOrderStatusMessage(OrderStatusMessage message){
+        log.info("Order status message received: {}", message);
+    }
 }

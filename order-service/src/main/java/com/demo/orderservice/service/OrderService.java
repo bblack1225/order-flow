@@ -1,8 +1,6 @@
 package com.demo.orderservice.service;
 
-import com.demo.orderservice.dto.OrderDto;
-import com.demo.orderservice.dto.ReceiveOrderDto;
-import com.demo.orderservice.dto.SendOrderDto;
+import com.demo.orderservice.dto.*;
 import com.demo.orderservice.entity.OrderInformation;
 import com.demo.orderservice.entity.OrderRepository;
 import jakarta.annotation.Resource;
@@ -36,20 +34,20 @@ public class OrderService {
     public void sendOrder(String exchange, String routingKey, OrderDto orderDto) {
         OrderInformation orderInformation = OrderDto.convertDto(orderDto);
         OrderInformation entity= saveOrder(orderInformation);
-        SendOrderDto response = SendOrderDto.convertDto(entity);
+        CreateOrderMessage response = CreateOrderMessage.convertDto(entity);
 
         rabbitTemplate.convertAndSend(exchange, routingKey, response);
-        System.out.println("Message has been sent: " + orderDto);
+        System.out.println("Message has been sent: " + response);
     }
 
     @RabbitListener(queues = "order.status.queue")
-    public void receiveOrderMessage(ReceiveOrderDto dto) {
+    public void receiveOrderMessage(OrderStatusMessage dto) {
         System.out.println("1:  " + dto);
         saveOrderByActualQty(dto);
 
         System.out.println("Received inventory-service: " + dto);
     }
-    private void saveOrderByActualQty(ReceiveOrderDto dto) {
+    private void saveOrderByActualQty(OrderStatusMessage dto) {
         OrderInformation entity = findOrderById(dto.getOrderId());
         entity.setActualQty(dto.getActualQty());
         System.out.println("2:  " + entity);

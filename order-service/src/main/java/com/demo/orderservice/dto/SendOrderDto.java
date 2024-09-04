@@ -6,14 +6,14 @@ import lombok.Data;
 @Data
 public class SendOrderDto {
     int orderId;
-    int productId;
-    int actualQty;
+    String productId;
+    int orderQty;
 
     public static SendOrderDto convertDto(OrderInformation request){
         SendOrderDto response = new SendOrderDto();
         response.setOrderId(request.getId());
         response.setProductId(request.getProductId());
-        response.setActualQty(request.getActualQty());
+        response.setOrderQty(request.getActualQty());
         return response;
     }
 }

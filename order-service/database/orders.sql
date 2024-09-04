@@ -2,7 +2,7 @@ create database orders;
 
 CREATE TABLE orders.order_information (
   id INT auto_increment PRIMARY KEY,
-  product_id INT NOT NULL,
+  product_id NVARCHAR(255) NOT NULL,
   name NVARCHAR(255) NOT NULL,
   order_qty INT NOT NULL,
   actual_qty INT NOT NULL,
