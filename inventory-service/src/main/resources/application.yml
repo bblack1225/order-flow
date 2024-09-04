@@ -6,5 +6,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:27017/inventory_db?authSource=admin
 server:
   port: 8071
