@@ -9,6 +9,7 @@ import java.math.BigInteger;
 @Data
 public class OrderDto {
     int id;
+    int productId;
     String name;
     int orderQty ;
     int actualQty  ;
@@ -18,12 +19,14 @@ public class OrderDto {
     String email;
     String address;
     String paymentName;
-    String paymentStatus;
+    int paymentStatus;
+    String description;
     int status;
 
     public static OrderInformation convertDto(OrderDto orderDto){
         OrderInformation response = new OrderInformation();
         response.setId(orderDto.getId());
+        response.setProductId(orderDto.getProductId());
         response.setName(orderDto.getName());
         response.setOrderQty(orderDto.getOrderQty());
         if(!ObjectUtils.isEmpty(orderDto.getActualQty()))
@@ -35,6 +38,7 @@ public class OrderDto {
         response.setAddress(orderDto.getAddress());
         response.setPaymentName(orderDto.getPaymentName());
         response.setPaymentStatus(orderDto.getPaymentStatus());
+        response.setDescription(orderDto.getDescription());
         response.setStatus(orderDto.getStatus());
 
         return response;

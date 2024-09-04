@@ -16,6 +16,7 @@ import java.math.BigInteger;
 public class OrderInformation {
     @Id
     int id;
+    int productId;
     String name;
     int orderQty ;
     int actualQty  ;
@@ -25,6 +26,7 @@ public class OrderInformation {
     String email;
     String address;
     String paymentName;
-    String paymentStatus;
+    int paymentStatus;
+    String description;
     int status;
 }
