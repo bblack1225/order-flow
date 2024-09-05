@@ -9,19 +9,22 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
-
   rabbitmq:
-    image: "rabbitmq:3-management"
+    image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     volumes:
-      - "rabbitmq_data:/var/lib/rabbitmq"
+      - rabbitmq_data:/var/lib/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
-
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]  # 檢查 RabbitMQ 的狀態
+      interval: 5s  # 每 5 秒檢查一次
+      timeout: 5s  # 5 秒內沒有回應，這次測試就會視為失敗，等待 interval 設定的時間到了後再試一次
+      retries: 10
   mysql:
     image: mysql:8.0
     container_name: mysql
@@ -34,32 +37,36 @@ services:
       MYSQL_USER: guest
       MYSQL_PASSWORD: guest
       MYSQL_ROOT_PASSWORD: root
-
   inventory-service:
     build:
       context: ./inventory-service
-      dockerfile: Dockerfile
     ports:
       - "8071:8071"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - order-flow-network
-
+      - SPRING_DATA_MONGODB_URI=mongodb://root:root@mongodb:27017/inventory_db?authSource=admin
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      mysql:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
   order-service:
     build:
       context: ./order-service
     ports:
       - "8072:8072"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - order-flow-network
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/orders
+      - SPRING_DATASOURCE_USERNAME=guest
+      - SPRING_DATASOURCE_PASSWORD=guest
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      mysql:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
 volumes:
   mongodb_data:
   rabbitmq_data:
   mysql_data:
-
-networks:
-  order-flow-network:
-    driver: bridge
