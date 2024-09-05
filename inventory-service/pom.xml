@@ -34,9 +34,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.demo</groupId>
+			<artifactId>common-util</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>inventory</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
