@@ -1,6 +1,19 @@
+version: '3'
 services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
   rabbitmq:
     image: "rabbitmq:3-management"
+    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -10,6 +23,20 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
 
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: orders
+      MYSQL_USER: guest
+      MYSQL_PASSWORD: guest
+      MYSQL_ROOT_PASSWORD: root
+
 volumes:
+  mongodb_data:
   rabbitmq_data:
-    name: rabbitmq_data
+  mysql_data:
