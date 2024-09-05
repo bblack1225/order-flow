@@ -6,6 +6,7 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+      - ./mongo-init-script.js:/docker-entrypoint-initdb.d/mongo-init-script.js
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
@@ -32,6 +33,7 @@ services:
       - "3308:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
     environment:
       MYSQL_DATABASE: orders
       MYSQL_USER: guest
@@ -65,7 +67,6 @@ services:
         condition: service_started
       rabbitmq:
         condition: service_healthy
-
 volumes:
   mongodb_data:
   rabbitmq_data:
