@@ -1,7 +1,4 @@
 CREATE DATABASE IF NOT EXISTS orders;
-CREATE USER 'guest'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON mydb.* TO 'guest'@'%';
-FLUSH PRIVILEGES;
 
 CREATE TABLE orders.order_information (
                                           id INT auto_increment PRIMARY KEY,

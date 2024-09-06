@@ -19,8 +19,8 @@ services:
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
     healthcheck:
       test: [ "CMD", "rabbitmqctl", "status" ]  # 檢查 RabbitMQ 的狀態
       interval: 5s  # 每 5 秒檢查一次
@@ -35,9 +35,6 @@ services:
       - mysql_data:/var/lib/mysql
       - ./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
     environment:
-      MYSQL_DATABASE: orders
-      MYSQL_USER: guest
-      MYSQL_PASSWORD: guest
       MYSQL_ROOT_PASSWORD: root
   inventory-service:
     build:
