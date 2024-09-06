@@ -7,6 +7,7 @@ import com.demo.inventoryservice.entity.InventoryHistory;
 import com.demo.inventoryservice.mq.InventoryProducer;
 import com.demo.inventoryservice.repository.InventoryHistoryRepository;
 import com.demo.inventoryservice.repository.InventoryRepository;
+import com.mongodb.client.result.UpdateResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -57,7 +58,8 @@ public class InventoryServiceImpl implements InventoryService {
         Query query = new Query(Criteria.where("productId").is(productId)
                 .and("quantity").gte(orderQty));
         Update update = new Update().inc("quantity", -orderQty);
-        boolean isUpdatedSuccess = mongoTemplate.updateFirst(query, update, Inventory.class).getModifiedCount() > 0;
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Inventory.class);
+        boolean isUpdatedSuccess = updateResult.getModifiedCount() == 1;
         if(isUpdatedSuccess){
             log.info("Inventory updated successfully for product id: {}", productId);
             sendOrderStatusMsg("Inventory Updated Successfully", orderId, SUCCESS_STATUS, orderQty);
