@@ -10,28 +10,28 @@ db.inventory.insertMany(
             "quantity": 20,
             "status": "available",
             "lastUpdated": ISODate("2024-09-02T12:00:00.000Z"),
-            "productId": ObjectId("66d675ab3b8b2b437c89f369")
+            "productId": "66d675ab3b8b2b437c89f369"
         },
         {
             "_id": ObjectId("66d679c33b8b2b437c89f37f"),
             "quantity": 20,
             "status": "available",
             "lastUpdated": ISODate("2024-09-02T12:00:00.000Z"),
-            "productId": ObjectId("66d6766e3b8b2b437c89f36d")
+            "productId": "66d6766e3b8b2b437c89f36d"
         },
         {
             "_id": ObjectId("66d679f63b8b2b437c89f382"),
             "quantity": 20,
             "status": "available",
             "lastUpdated": ISODate("2024-09-02T12:00:00.000Z"),
-            "productId": ObjectId("66d676893b8b2b437c89f36e")
+            "productId": "66d676893b8b2b437c89f36e"
         },
         {
             "_id": ObjectId("66d67a103b8b2b437c89f383"),
             "quantity": 20,
             "status": "available",
             "lastUpdated": ISODate("2024-09-02T12:00:00.000Z"),
-            "productId": ObjectId("66d676943b8b2b437c89f36f")
+            "productId": "66d676943b8b2b437c89f36f"
         }
     ]
 );
