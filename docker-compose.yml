@@ -52,12 +52,13 @@ services:
   order-service:
     build:
       context: ./order-service
+    image: order-service
     ports:
       - "8072:8072"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/orders
-      - SPRING_DATASOURCE_USERNAME=guest
-      - SPRING_DATASOURCE_PASSWORD=guest
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_RABBITMQ_HOST=rabbitmq
     depends_on:
       mysql:

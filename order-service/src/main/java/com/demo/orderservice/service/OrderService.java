@@ -8,9 +8,9 @@ import com.demo.orderservice.entity.OrderRepository;
 import com.demo.orderservice.mq.OrderProducer;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -21,12 +21,13 @@ public class OrderService {
     @Resource
     private OrderProducer orderProducer;
 
-    public void getAllOrder() {
-        orderRepository.findAll();
+    public List<OrderInformation> getAllOrder() {
+        return orderRepository.findAll();
     }
 
     public OrderInformation findOrderById(int id) {
         Optional<OrderInformation> entity = orderRepository.findById(id);
+        System.out.println(entity.orElse(new OrderInformation()));
         return entity.orElse(new OrderInformation());
     }
 
@@ -49,6 +50,13 @@ public class OrderService {
         response.setProductId(request.getProductId());
         response.setOrderQty(request.getOrderQty());
         return response;
+    }
+
+    public void updateOrder(OrderDto orderDto) {
+        OrderInformation entity = findOrderById(orderDto.getId());
+        entity.setDescription(orderDto.getDescription());
+
+        saveOrder(entity);
     }
 
     public void saveOrderByActualQty(OrderStatusMessage dto) {
