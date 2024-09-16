@@ -7,7 +7,6 @@ import com.demo.inventoryservice.entity.InventoryHistory;
 import com.demo.inventoryservice.mq.InventoryProducer;
 import com.demo.inventoryservice.repository.InventoryHistoryRepository;
 import com.demo.inventoryservice.repository.InventoryRepository;
-import com.mongodb.client.result.UpdateResult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -60,18 +59,23 @@ class InventoryServiceImplTest {
         inventory.setStatus("available");
         inventory.setLastUpdated(LocalDateTime.now());
 
-        UpdateResult updateResult = mock(UpdateResult.class);
-        when((updateResult.getModifiedCount())).thenReturn(1L);
+        Inventory updatedInventory = new Inventory();
+        updatedInventory.setId("1");
+        updatedInventory.setProductId(productId);
+        updatedInventory.setQuantity(actualQty - orderQty);
+        updatedInventory.setStatus("available");
+        updatedInventory.setLastUpdated(LocalDateTime.now());
+
 
         when(inventoryRepository.findByProductId(productId)).thenReturn(inventory);
-        when(mongoTemplate.updateFirst(any(Query.class), any(Update.class), eq(Inventory.class)))
-                .thenReturn(updateResult);
+        when(mongoTemplate.findAndModify(any(Query.class), any(Update.class), eq(Inventory.class)))
+                .thenReturn(updatedInventory);
+
         when(inventoryHistoryRepository.save(any())).thenReturn(any(InventoryHistory.class));
 
         inventoryService.updateInventory(message);
+
         ArgumentCaptor<OrderStatusMessage> messageCaptor = ArgumentCaptor.forClass(OrderStatusMessage.class);
-
-
         verify(inventoryHistoryRepository, times(1)).save(any(InventoryHistory.class));
         verify(inventoryProducer, times(1)).sendOrderStatusMessage(messageCaptor.capture());
         assertEquals("Inventory Updated Successfully", messageCaptor.getValue().getDescription());
@@ -100,7 +104,7 @@ class InventoryServiceImplTest {
         assertEquals("Product Not Found", messageCaptor.getValue().getDescription());
         assertEquals(orderId, messageCaptor.getValue().getOrderId());
         assertEquals(FAILED_STATUS, messageCaptor.getValue().getStatus());
-        assertEquals(orderQty, messageCaptor.getValue().getActualQty());
+        assertEquals(0, messageCaptor.getValue().getActualQty());
     }
 
     @Test
